@@ -1,41 +1,31 @@
 ﻿using ByteBankIO;
 using System.Text;
 
-class Program
+partial class Program
 {
     static void Main(string[] args)
     {
         var enderecoDoArquivo = "contas.txt";
 
-        using(var fluxoDoArquivo = new FileStream(enderecoDoArquivo, FileMode.Open))
+        using (var fluxoDeArquivo =  new FileStream(enderecoDoArquivo, FileMode.Open))
         {
-            var numeroDeBytesLidos = -1;
+            var leitor = new StreamReader(fluxoDeArquivo);
 
-            var buffer = new byte[1024]; 
+            //var linha = leitor.ReadLine();
 
-            while(numeroDeBytesLidos !=0)
+            //var texto = leitor.ReadToEnd(); //lê até o final do arquivo.
+
+            //var numero = leitor.Read();
+
+            while(!leitor.EndOfStream )
             {
-                numeroDeBytesLidos = fluxoDoArquivo.Read(buffer, 0, 1024);
-                EscreverBuffer(buffer);
+                var linha = leitor.ReadLine();
+                Console.WriteLine(linha);
             }
 
-            fluxoDoArquivo.Close();
-        
-            Console.ReadLine();
+            Console.WriteLine(linha);
         }
+        Console.ReadLine();
     }
 
-    static void EscreverBuffer(byte[] buffer )
-    {
-        var utf8 = new UTF8Encoding();
-
-        var texto = utf8.GetString(buffer);
-        Console.Write(texto);
-
-        //foreach ( var myByte in buffer)
-        //{
-        //    Console.Write(myByte);
-        //    Console.Write(" ");
-        //}
-    }
 }
