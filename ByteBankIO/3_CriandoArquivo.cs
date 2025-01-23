@@ -19,4 +19,15 @@ partial class Program
         }
 
     }
+    static void CriarArquivoComWriter()
+    {
+        var caminhoNovoArquivo = "ContasExportadas.csv";
+
+        using (var fluxoDeArquivo = new FileStream(caminhoNovoArquivo, FileMode.Create))
+
+        using (var escritor = new StreamWriter(fluxoDeArquivo))
+        {
+            escritor.Write("456, 65456, 456.0, Pedro");
+        }
+    }
 }
