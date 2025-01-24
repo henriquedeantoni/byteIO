@@ -5,27 +5,20 @@ partial class Program
 {
     static void Main(string[] args)
     {
-        var enderecoDoArquivo = "contas.txt";
+        
+        var caminhoNovoArquivo = "TextaEscrita.txt";
 
-        using (var fluxoDeArquivo =  new FileStream(enderecoDoArquivo, FileMode.Open))
+        using (var fluxoDeArquivo = new FileStream(caminhoNovoArquivo, FileMode.Create))
+
+        using (var escritor = new StreamWriter(fluxoDeArquivo))
         {
-            var leitor = new StreamReader(fluxoDeArquivo);
-
-            //var linha = leitor.ReadLine();
-
-            //var texto = leitor.ReadToEnd(); //lê até o final do arquivo.
-
-            //var numero = leitor.Read();
-
-            while(!leitor.EndOfStream )
-            {
-                var linha = leitor.ReadLine();
-                Console.WriteLine(linha);
-            }
-
-            Console.WriteLine(linha);
+            escritor.Write(false);
+            escritor.Write(true);
+            escritor.Write(45454545454545454);
         }
+        Console.WriteLine("Aplicação Finalizada");
+
         Console.ReadLine();
     }
-
 }
+
