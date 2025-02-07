@@ -19,10 +19,15 @@ partial class Program
 
     static void LeituraBinaria()
     {
-        using (var fs = new FileStream("contaCorrente.txt", FileMode.Create))
-        using (var escritor = new BinaryWriter(fs))
+        using (var fs = new FileStream("contaCorrente.txt", FileMode.Open))
+        using (var leitor = new BinaryReader(fs))
         {
-            va
+            var agencia = leitor.ReadInt32();
+            var numeroConta = leitor.ReadInt32();
+            var saldo = leitor.ReadDouble();
+            var titular = leitor.ReadString();
+
+            Console.WriteLine($"{agencia}/{numeroConta} {titular} {saldo}");
         }
     }
 }
